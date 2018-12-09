@@ -10,6 +10,8 @@
 		702B9A9521BBC1D40094269B /* tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702B9A9421BBC1D40094269B /* tokenizer.swift */; };
 		702B9A9721BCB1530094269B /* Sscan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702B9A9621BCB1530094269B /* Sscan.swift */; };
 		702B9A9921BCD9520094269B /* aoc_day4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702B9A9821BCD9520094269B /* aoc_day4.swift */; };
+		702B9A9B21BD18180094269B /* aoc_day5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702B9A9A21BD18180094269B /* aoc_day5.swift */; };
+		702B9A9D21BD41C80094269B /* aoc_day9.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702B9A9C21BD41C80094269B /* aoc_day9.swift */; };
 		70B6FBFB21BB8F31009FF7C1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6FBFA21BB8F31009FF7C1 /* main.swift */; };
 		70B6FC0221BB8F56009FF7C1 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6FC0121BB8F56009FF7C1 /* StreamReader.swift */; };
 		70B6FC0421BBA3EE009FF7C1 /* aoc_day2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6FC0321BBA3EE009FF7C1 /* aoc_day2.swift */; };
@@ -32,6 +34,8 @@
 		702B9A9421BBC1D40094269B /* tokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tokenizer.swift; sourceTree = "<group>"; };
 		702B9A9621BCB1530094269B /* Sscan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sscan.swift; sourceTree = "<group>"; };
 		702B9A9821BCD9520094269B /* aoc_day4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aoc_day4.swift; sourceTree = "<group>"; };
+		702B9A9A21BD18180094269B /* aoc_day5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aoc_day5.swift; sourceTree = "<group>"; };
+		702B9A9C21BD41C80094269B /* aoc_day9.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aoc_day9.swift; sourceTree = "<group>"; };
 		70B6FBF721BB8F31009FF7C1 /* AdventOfCode-2018 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AdventOfCode-2018"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B6FBFA21BB8F31009FF7C1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		70B6FC0121BB8F56009FF7C1 /* StreamReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 				70B6FC0321BBA3EE009FF7C1 /* aoc_day2.swift */,
 				70B6FC0521BBB4DF009FF7C1 /* aoc_day3.swift */,
 				702B9A9821BCD9520094269B /* aoc_day4.swift */,
+				702B9A9A21BD18180094269B /* aoc_day5.swift */,
+				702B9A9C21BD41C80094269B /* aoc_day9.swift */,
 				702B9A9421BBC1D40094269B /* tokenizer.swift */,
 				702B9A9621BCB1530094269B /* Sscan.swift */,
 			);
@@ -143,6 +149,8 @@
 				702B9A9921BCD9520094269B /* aoc_day4.swift in Sources */,
 				70B6FC0421BBA3EE009FF7C1 /* aoc_day2.swift in Sources */,
 				70B6FBFB21BB8F31009FF7C1 /* main.swift in Sources */,
+				702B9A9B21BD18180094269B /* aoc_day5.swift in Sources */,
+				702B9A9D21BD41C80094269B /* aoc_day9.swift in Sources */,
 				702B9A9521BBC1D40094269B /* tokenizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
