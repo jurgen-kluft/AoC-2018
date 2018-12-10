@@ -18,21 +18,24 @@ class CoordinateMap {
     struct GridCell {
         var m_age : Int = -1
         var m_idx : Int = -1
-        func is_free() {
+
+        func is_free() -> Bool {
             return m_idx == -1 && m_age == -1
         }
-        func kill() {
+
+        mutating func kill() {
             m_idx = -2
             m_age = -2
         }
-        func is_dead() {
+
+        func is_dead() -> Bool {
             return m_idx == -2 && m_age == -2
         }
 
         // We cannot extend onto a cell if it is already taken or if it is dead.
         // When we call this and the cell has been taken and the age is that same
         // then this cell should be killed.
-        func take(idx: Int, age: Int) -> Bool {
+        mutating func take(idx: Int, age: Int) -> Bool {
             if is_dead() {
                 return false
             }
@@ -90,9 +93,9 @@ class CoordinateMap {
 
         // Write existing coordinates onto the map
         for c in m_coords {
-            let i : Int = c.y * m_mapw + c.x
-            m_map[i].idx = c.idx
-            m_map[i].age = 0
+            let i = c.y * m_map_w + c.x
+            m_map[i].m_idx = c.idx
+            m_map[i].m_age = 0
         }
     }
 
@@ -113,8 +116,8 @@ class CoordinateMap {
     let Right : Int = 8
 
     func DetermineDirectionsToExtendCell(x: Int, y: Int) -> Int {
-        let cell_idx  = y * m_mapw + x
-        let coord_idx = m_map[cell_idx].idx
+        let cell_idx  = y * m_map_w + x
+        let coord_idx = m_map[cell_idx].m_idx
 
         var dir : Int = 0
         if x == m_coords[coord_idx].x {
@@ -146,7 +149,35 @@ class CoordinateMap {
         // Based on the incoming x/y, dir and map width and height see
         // if we need to clip the direction so that we don't move out
         // of the map.
-
+        if x == 0 {
+            dir = dir & ~Left
+        } else if x == (m_map_w - 1) {
+            dir = dir & ~Right
+        }
+        if y == 0 {
+            dir = dir & ~Up
+        } else if y == (m_map_h - 1) {
+            dir = dir & ~Down
+        }
+        return dir
+    }
+    
+    func ExtendCell(x: Int, y: Int, age: Int) -> Bool {
+        let dir = DetermineDirectionsToExtendCell(x: x, y: y)
+        if (dir & Left) == Left {
+            
+        }
+        if (dir & Right) == Right {
+            
+        }
+        if (dir & Up) == Up {
+            
+        }
+        if (dir & Down) == Down {
+            
+        }
+        
+        return false
     }
 
     func ComputeAreas() -> Void {
@@ -159,10 +190,12 @@ class CoordinateMap {
             
             // Go over every grid-cell and process cells that have the @current_age and extend
             // them in the correct directions and age them by 1.
-
-            
-
-            age += 1
+            for x in 0...(m_map_w - 1) {
+                for y in 0...(m_map_h - 1) {
+                    extending = extending || ExtendCell(x: x, y: y, age: current_age)
+                }
+            }
+            current_age += 1
         }
 
     }
@@ -191,7 +224,7 @@ func aoc_day6() -> Void {
             // Example Input: 
             // 108, 324
             // 
-            if Sscan(format: "%I,~%I", line: statement, arg0: &coordX, arg1: &coordY) {
+            if Sscan(format: "%I,~%I", line: line, arg0: &coordX, arg1: &coordY) {
                 coordmap.AddCoord(x: coordX as! Int, y: coordY as! Int)
             }
         }
@@ -210,4 +243,3 @@ func aoc_day6() -> Void {
 
     // ----------------------------------------------------------------------------------------------------------------------------
 }
-

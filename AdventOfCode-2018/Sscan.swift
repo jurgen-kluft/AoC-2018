@@ -156,9 +156,9 @@ func Sscan(format: String, line: String, arg0: inout Any, arg1: inout Any?, arg2
                     if isFloat(character: f) {
                         floatstr.append(f)
                         input.removeFirst()
-                    } else if d == "-" {
+                    } else if f == "-" {
                         negative = !negative
-                    } else if d == "+" {
+                    } else if f == "+" {
                         // NOP
                     } else {
                         break

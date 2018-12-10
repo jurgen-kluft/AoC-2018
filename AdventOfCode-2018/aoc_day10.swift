@@ -19,11 +19,10 @@ class CodedMessage {
         var position : Vector = Vector()
         var velocity : Vector = Vector()
     }
-
-    var m_particles : [Particle] : []
+    var m_particles : [Particle] = []
 
     var m_sim_time : Int = 0
-    var m_sim_data : [Particle] : []
+    var m_sim_data : [Particle] = []
 
     var m_minx : Int = Int.max
     var m_maxx : Int = Int.min
@@ -46,10 +45,14 @@ class CodedMessage {
         }
         m_sim_time = 0
     }
+    
     func Decode() -> Bool {
         // Move particles
         m_sim_time += 1
+        
+        return true
     }
+    
     func Print() {
         // Do we need to check if this makes any sense to plot?
 
@@ -75,10 +78,10 @@ func aoc_day10() -> Void {
         while let line = aStreamReader.nextLine() {
             var px : Any = Int(0)
             var py : Any? = Int(0)
-            var vx : Any = Int(0)
+            var vx : Any? = Int(0)
             var vy : Any? = Int(0)
-            if Sscan(format: "position=<~%I,~%I>~velocity=<~%I,~%I>", line: statement, arg0: &px, arg1: &py, arg2: &vx, arg3: &vy) {
-                message.AddParticle(px as! Int, py as! Int, vx as! Int, vy as! Int)
+            if Sscan(format: "position=<~%I,~%I>~velocity=<~%I,~%I>", line: line, arg0: &px, arg1: &py, arg2: &vx, arg3: &vy) {
+                message.AddParticle(px: px as! Int, py: py as! Int, vx: vx as! Int, vy: vy as! Int)
             }
         }
     }
