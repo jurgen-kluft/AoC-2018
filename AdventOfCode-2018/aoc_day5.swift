@@ -87,7 +87,7 @@ class Polymer {
 
 func aoc_day5() -> Void {
     // ----------------------------------------------------------------------------------------------------------------------------
-    print("Advent of Code, day 5, part 1")
+    print("Advent of Code, day 5")
     
     var polymerStr : String = ""
     if let aStreamReader = StreamReader(path: "/Users/obnosis1/Xcode.Dev/AdventOfCode-2018/AdventOfCode-2018/Input/day5.txt" ) {

@@ -10,6 +10,8 @@ import Foundation
 
 func aoc_day2() -> Void {
  
+     print("Advent of Code, day 2")
+
     // ----------------------------------------------------------------------------------------------------------------------------
     // Day 2
     var ids: [String] = []
@@ -53,7 +55,7 @@ func aoc_day2() -> Void {
         }
     }
 
-    print("Day 2 answer of part 1: ", total2s * total3s)
+    print("    answer of part 1: ", total2s * total3s)
 
     var matchingid : String = "?"
     var idmatchdb = [String: Int]()
@@ -79,7 +81,7 @@ func aoc_day2() -> Void {
         idindex += 1
     }
 
-    print("Day 2 answer of part 2: ", matchingid)
+    print("    answer of part 2: ", matchingid)
     // wrong: ioenxmfkezbcjpdgwvraqhluz
     // 2nd try: iosnxmfkpabcjpdywvrtahluy
 

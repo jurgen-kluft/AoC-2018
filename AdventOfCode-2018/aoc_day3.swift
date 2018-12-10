@@ -29,7 +29,7 @@ struct ClaimOnFabricArea
 
 func aoc_day3() -> Void {
     // ----------------------------------------------------------------------------------------------------------------------------
-    print("Advent of Code, day 3, part 1")
+    print("Advent of Code, day ")
     
     var claims: [ClaimOnFabricArea] = []
     if let aStreamReader = StreamReader(path: "/Users/obnosis1/Xcode.Dev/AdventOfCode-2018/AdventOfCode-2018/Input/day3.txt" ) {

@@ -46,7 +46,7 @@ func SortGuardEvent(e1: GuardEvent, e2: GuardEvent) -> Bool {
 
 func aoc_day4() -> Void {
     // ----------------------------------------------------------------------------------------------------------------------------
-    print("Advent of Code, day 4, part 1")
+    print("Advent of Code, day 4")
     
     var guardevents : [GuardEvent] = []
     var asleep : [Int] = []
