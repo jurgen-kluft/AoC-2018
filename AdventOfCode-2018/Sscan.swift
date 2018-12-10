@@ -119,16 +119,21 @@ func Sscan(format: String, line: String, arg0: inout Any, arg1: inout Any?, arg2
             if c == "I" {
                 // Read a number (100, 4096, 32768)
                 var decimal : Int = 0
+                var negative : Bool = false
                 while input.first != nil {
                     let d = input.first ?? " "
                     if isDecimal(character: d) {
                         decimal = (decimal * 10) + toDecimal(character: d)
                         input.removeFirst()
+                    } else if d == "-" {
+                        negative = !negative
+                    } else if d == "+" {
+                        // NOP
                     } else {
                         break
                     }
                 }
-                arg = decimal
+                arg = negative ? -decimal : decimal
             } else if c == "H" {
                 // Read a hexadecimal value
                 var hexadecimal : Int = 0
@@ -145,16 +150,22 @@ func Sscan(format: String, line: String, arg0: inout Any, arg1: inout Any?, arg2
             } else if c == "F" {
                 // Read a float value (3.1415, 12.34e-56)
                 var floatstr : String = ""
+                var negative : Bool = false
                 while input.first != nil {
                     let f = input.first ?? " "
                     if isFloat(character: f) {
                         floatstr.append(f)
                         input.removeFirst()
+                    } else if d == "-" {
+                        negative = !negative
+                    } else if d == "+" {
+                        // NOP
                     } else {
                         break
                     }
                 }
-                arg = Double(floatstr) ?? 0.0
+                let value : Double = Double(floatstr) ?? 0.0
+                arg = negative ? -value : value
             } else if c == "B" {
                 // Read a bool value (Yes,No,True,False,On,Off)
                 var bool : Bool
