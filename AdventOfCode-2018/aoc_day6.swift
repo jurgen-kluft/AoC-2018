@@ -119,6 +119,22 @@ class CoordinateMap {
         let cell_idx  = y * m_map_w + x
         let coord_idx = m_map[cell_idx].m_idx
 
+        // Checking in relation to the origin, see which direction
+        // we should extend into.
+
+        // 1
+        //                                     e
+        // o-----x, this can extend into o-----xe
+        //                                     e
+        // 2
+        //                                       e
+        //    +---x, this can extend into o-----xe
+        // o--+
+        // 3
+        // o--+
+        //    +---x, this can extend into o-----xe
+        //                                       e
+
         var dir : Int = 0
         if x == m_coords[coord_idx].x {
             if y < m_coords[coord_idx].y {
@@ -162,10 +178,11 @@ class CoordinateMap {
         return dir
     }
     
-    func ExtendCell(x: Int, y: Int, age: Int) -> Bool {
+    func ExtendCell(x: Int, y: Int, idx: Int, age: Int) -> Bool {
         let dir = DetermineDirectionsToExtendCell(x: x, y: y)
         if (dir & Left) == Left {
-            
+            let i  = y * m_map_w + x
+            m_map.take()
         }
         if (dir & Right) == Right {
             
@@ -180,6 +197,11 @@ class CoordinateMap {
         return false
     }
 
+    func ShouldExtendCell(x: Int, y: Int, age: current_age) -> Bool {
+        let i  = y * m_map_w + x
+        return m_map[i].m_age == current_age)
+    }
+
     func ComputeAreas() -> Void {
         
         // Extend each coordinate until we reach the point where none can be extended anymore
@@ -192,17 +214,61 @@ class CoordinateMap {
             // them in the correct directions and age them by 1.
             for x in 0...(m_map_w - 1) {
                 for y in 0...(m_map_h - 1) {
-                    extending = extending || ExtendCell(x: x, y: y, age: current_age)
+                    let i  = y * m_map_w + x
+                    if ShouldExtendCell(x: x, y: y, age: current_age) {
+                        if ExtendCell(x: x, y: y, age: current_age) {
+                            extending = true
+                        }
+                    }
                 }
             }
+
             current_age += 1
         }
 
     }
 
     func DetermineSizeOfLargestArea() -> Int {
+        var areasizes : [Int] = []
+        for _ in m_coords {
+            areasizes.append(0)
+        }
 
-        return 0
+        for x in 0...(m_map_w - 1) {
+            for y in 0...(m_map_h - 1) {
+                let i  = y * m_map_w + x
+                if !m_map[i].is_dead() && !m_map[i].is_free() {
+                    areasizes[m_map[i].m_idx] += 1
+                }
+            }
+        }
+
+        // Reset counts for those area ids that are infinite
+        for x in 0...(m_map_w - 1) {
+            let i  = x
+            areasizes[m_map[i].m_idx] = 0
+        }
+        for x in 0...(m_map_w - 1) {
+            let i  = (m_map_h - 1) * m_map_w + x
+            areasizes[m_map[i].m_idx] = 0
+        }
+        for y in 0...(m_map_h - 1) {
+            let i  = y * m_map_w
+            areasizes[m_map[i].m_idx] = 0
+        }
+        for y in 0...(m_map_h - 1) {
+            let i  = y * m_map_w + (m_map_w - 1)
+            areasizes[m_map[i].m_idx] = 0
+        }
+
+        var largest_area_size : Int = Int.min
+        for areasize in areasizes {
+            if areasize > largest_area_size {
+                largest_area_size = areasize
+            }
+        }
+
+        return largest_area_size
     }
 }
 
